@@ -4,8 +4,8 @@ const jsCompressor = require(`gulp-uglify`)
 
 const compileJSForProd = () => {
     return src([
-        `./app/uncompressed-js/*.js`,
-        `./app/uncompressed-js/**/*.js`])
+        `./app/dev/scripts/*.js`,
+        `./app/dev/scripts/**/*.js`])
         .pipe(babel())
         .pipe(jsCompressor())
         .pipe(dest(`./app/prod/scripts`))

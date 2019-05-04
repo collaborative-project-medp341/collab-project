@@ -3,8 +3,8 @@ const jsLinter = require(`gulp-eslint`)
 
 const linterJS = () => {
     return src([
-        `./app/uncompressed-js/*.js`,
-        `./app/uncompressed-js/**/*.js`,
+        `./app/dev/scripts/*.js`,
+        `./app/dev/scripts/**/*.js`,
     ])
     .pipe(jsLinter({
         parserOptions: {

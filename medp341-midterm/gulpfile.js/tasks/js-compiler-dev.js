@@ -3,12 +3,12 @@ const babel = require(`gulp-babel`);
 
 const compileJSForDev = () => {
     return src([
-        `./app/uncompressed-js/*.js`,
-        `./app/uncompressed-js/**/*.js`])
+        `./app/dev/scripts/*.js`,
+        `./app/dev/scripts/**/*.js`])
         .pipe(babel({
 			presets: ['@babel/preset-env']
 		}))
-        .pipe(dest(`./app/temp/scripts`))
+        .pipe(dest(`./app/prod/scripts`))
 
 }
 
