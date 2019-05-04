@@ -3,8 +3,8 @@ const CSScompiler = require(`gulp-sass`)
 
 const compileCSSForProd = () => {
     return src([
-            `./app/sass/*.scss`,
-            `./app/sass/**/*.scss`])
+            `./app/dev/styles/*.scss`,
+            `./app/dev/styles/**/*.scss`])
             .pipe(CSScompiler({
                 outputStyle: `compressed`,
                 precision: 10,

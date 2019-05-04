@@ -3,8 +3,8 @@ const htmlValidator = require(`gulp-html`)
 
 const validateHTML = () => {
     return src([
-        `./app/uncompressed-html/*.html`,
-        `./app/uncompressed-html/**/*.html`])
+        `./app/dev/*.html`,
+        `./app/dev/**/*.html`])
         .pipe(htmlValidator())
 }
 
