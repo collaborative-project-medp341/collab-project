@@ -10,7 +10,12 @@ let poseNetIsLoaded = false
 //coords
 let LeftEyeX = WIDTH / 2
 let RightEyeX = WIDTH / 2
-let middlePointHead 
+let LeftEyeY = WIDTH / 2
+let RightEyeY = WIDTH / 2
+let middlePointHeadX
+let middlePointHeadY
+
+
 
 //top bar colors 
 let selectModeColor = `rgba(96, 125, 139, 1)`
@@ -25,6 +30,10 @@ let pastText
 let futureText 
 
 
+// flock settings 
+let flockSize = 10
+
+
 const pnCallback = () => {
   console.log('pose net loaded')
 }
@@ -37,10 +46,17 @@ const getCurrentPose = (poses) => {
     let newLeftEyeX = leftEye.position.x
     let newRightEyeX = rightEye.position.x
 
+    let newLeftEyeY = leftEye.position.x
+    let newRightEyeY = rightEye.position.x
+
     LeftEyeX = lerp(LeftEyeX, newLeftEyeX, 0.3)
     RightEyeX = lerp(RightEyeX, newRightEyeX, 0.3)
+    LeftEyeY = lerp(LeftEyeY, newLeftEyeY, 0.3)
+    RightEyeY = lerp(RightEyeY, newRightEyeY, 0.3)
 
-    middlePointHead = ((LeftEyeX + RightEyeX) / 2)
+    middlePointHeadX = ((LeftEyeX + RightEyeX) / 2)
+    middlePointHeadY = ((LeftEyeY + RightEyeY) / 2)
+
   }
 }
 
@@ -53,17 +69,24 @@ const poseNetCapture = () => {
   poseNet.on('pose', getCurrentPose)
 }
 
+const runFlock = () => {
+  flock = new Flock();
+  // Add an initial set of boids into the system
+  for (let i = 0; i < flockSize; i++) {
+    let b = new Boid(width / 2,height / 2);
+    flock.addBoid(b);
+  }
+
+}
+
 function setup(){
   createCanvas(WIDTH, HEIGHT)
 
   poseNetCapture()
 
-  flock = new Flock();
-  // Add an initial set of boids into the system
-  for (let i = 0; i < 100; i++) {
-    let b = new Boid(width / 2,height / 2);
-    flock.addBoid(b);
-  }
+  lionIMG = loadImage(`../images/lion.png`)
+
+  runFlock()
 
 }
 
@@ -71,23 +94,25 @@ function draw(){
   image(video, 0, 0, WIDTH, HEIGHT)
 
   fill(255);
-  ellipse(middlePointHead, 144, 20, 20);
-flock.run();
+  ellipse(middlePointHeadX, 144, 20, 20);
+  flock.run();
 
-  if (middlePointHead > (WIDTH / 2)){
+  if (middlePointHeadX > (WIDTH / 2)){
     currectTimeFuture = selectModeColor
     currectTimePast = unselectModeColor
     pastText = unselectTextColor
     futureText = selectTextColor
     //render objects on future 
-
+    // flockSize = 1
+    // runFlock()
   } else {
     currectTimeFuture = unselectModeColor
     currectTimePast = selectModeColor
     pastText = selectTextColor
     futureText = unselectTextColor
     //render objects in the past 
-
+    // flockSize = 7
+    // runFlock()
   }
 
   fill(currectTimePast)
