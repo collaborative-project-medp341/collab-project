@@ -29,10 +29,12 @@ let currectTimeFuture
 let pastText 
 let futureText 
 
-
 // flock settings 
 let flockSize = 10
 
+// images
+let animalIMG = `../images/lion.png`
+let backgroundIMG = `../images/reef.jpg`
 
 const pnCallback = () => {
   console.log('pose net loaded')
@@ -46,11 +48,12 @@ const getCurrentPose = (poses) => {
     let newLeftEyeX = leftEye.position.x
     let newRightEyeX = rightEye.position.x
 
-    let newLeftEyeY = leftEye.position.x
-    let newRightEyeY = rightEye.position.x
+    let newLeftEyeY = leftEye.position.y
+    let newRightEyeY = rightEye.position.y
 
     LeftEyeX = lerp(LeftEyeX, newLeftEyeX, 0.3)
     RightEyeX = lerp(RightEyeX, newRightEyeX, 0.3)
+
     LeftEyeY = lerp(LeftEyeY, newLeftEyeY, 0.3)
     RightEyeY = lerp(RightEyeY, newRightEyeY, 0.3)
 
@@ -79,24 +82,48 @@ const runFlock = () => {
 
 }
 
+const setAnimationPicture = () => {
+  let path = getURLPath()
+
+  if (path[0] === 'india.html'){
+    animalIMG = `../images/thar.png`
+    backgroundIMG = `../images/mountains.jpg`
+
+  } else if (path[0] === 'australia.html') {
+    animalIMG = `../images/turtle.png`
+    backgroundIMG = `../images/reef.jpg`
+
+  } else if (path[0] === 'congo.html') {
+    animalIMG = `../images/gorilla.png`
+    backgroundIMG = `../images/rainforest.jpg`
+
+  } else if (path[0] === 'brazil.html') {
+    animalIMG = `../images/macaw.png`
+    backgroundIMG = `../images/pantagal.jpg`
+    
+  }
+
+
+}
+
 function setup(){
+
+  setAnimationPicture()
+
+  bg = loadImage(backgroundIMG)
   createCanvas(WIDTH, HEIGHT)
 
-  poseNetCapture()
 
-  lionIMG = loadImage(`../images/lion.png`)
+
+  poseNetCapture(animalIMG)
+
+  flockIMG = loadImage(animalIMG)
 
   runFlock()
 
 }
 
-function draw(){
-  image(video, 0, 0, WIDTH, HEIGHT)
-
-  fill(255);
-  ellipse(middlePointHeadX, 144, 20, 20);
-  flock.run();
-
+const pastFuture = () => {
   if (middlePointHeadX > (WIDTH / 2)){
     currectTimeFuture = selectModeColor
     currectTimePast = unselectModeColor
@@ -131,6 +158,18 @@ function draw(){
   textSize(20);
   textAlign(CENTER, CENTER);
   text(`Future`, ((WIDTH / 4) * 3), 10)
+}
+
+
+function draw(){
+  // image(video, 0, 0, WIDTH, HEIGHT)
+  background(bg)
+
+  fill(255);
+  ellipse(middlePointHeadX, middlePointHeadY, 20, 20);
+  flock.run();
+
+  //pastFuture()
 
 }
 

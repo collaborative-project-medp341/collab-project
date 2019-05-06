@@ -10,7 +10,10 @@ var poseNetIsLoaded = false; //coords
 
 var LeftEyeX = WIDTH / 2;
 var RightEyeX = WIDTH / 2;
-var middlePointHead; //top bar colors 
+var LeftEyeY = WIDTH / 2;
+var RightEyeY = WIDTH / 2;
+var middlePointHeadX;
+var middlePointHeadY; //top bar colors 
 
 var selectModeColor = "rgba(96, 125, 139, 1)";
 var unselectModeColor = "rgba(38, 50, 56, 1)";
@@ -20,7 +23,11 @@ var unselectTextColor = "rgba(0, 0, 0, 1)"; //top bar options
 var currectTimePast;
 var currectTimeFuture;
 var pastText;
-var futureText;
+var futureText; // flock settings 
+
+var flockSize = 10; // images
+
+var animalIMG = "../images/lion.png";
 
 var pnCallback = function pnCallback() {
   console.log('pose net loaded');
@@ -32,9 +39,14 @@ var getCurrentPose = function getCurrentPose(poses) {
     var rightEye = poses[0].pose.keypoints[2];
     var newLeftEyeX = leftEye.position.x;
     var newRightEyeX = rightEye.position.x;
+    var newLeftEyeY = leftEye.position.y;
+    var newRightEyeY = rightEye.position.y;
     LeftEyeX = lerp(LeftEyeX, newLeftEyeX, 0.3);
     RightEyeX = lerp(RightEyeX, newRightEyeX, 0.3);
-    middlePointHead = (LeftEyeX + RightEyeX) / 2;
+    LeftEyeY = lerp(LeftEyeY, newLeftEyeY, 0.3);
+    RightEyeY = lerp(RightEyeY, newRightEyeY, 0.3);
+    middlePointHeadX = (LeftEyeX + RightEyeX) / 2;
+    middlePointHeadY = (LeftEyeY + RightEyeY) / 2;
   }
 };
 
@@ -45,33 +57,65 @@ var poseNetCapture = function poseNetCapture() {
   poseNet.on('pose', getCurrentPose);
 };
 
-function setup() {
-  createCanvas(WIDTH, HEIGHT);
-  poseNetCapture();
+var runFlock = function runFlock() {
   flock = new Flock(); // Add an initial set of boids into the system
 
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < flockSize; i++) {
     var b = new Boid(width / 2, height / 2);
     flock.addBoid(b);
   }
+};
+
+var setAnimationPicture = function setAnimationPicture() {
+  var path = getURLPath();
+  console.log(path);
+
+  if (path[0] === 'india.html') {
+    console.log('0');
+    animalIMG = "../images/thar.png";
+  } else if (path[0] === 'australia.html') {
+    console.log('1');
+    animalIMG = "../images/turtle.png";
+  } else if (path[0] === 'congo.html') {
+    console.log('2');
+    animalIMG = "../images/gorilla.png";
+  } else if (path[0] === 'brazil.html') {
+    console.log('3');
+    animalIMG = "../images/macaw.png";
+  } else {
+    console.log('4');
+  }
+};
+
+function setup() {
+  createCanvas(WIDTH, HEIGHT);
+  setAnimationPicture();
+  poseNetCapture(animalIMG);
+  flockIMG = loadImage(animalIMG);
+  runFlock();
 }
 
 function draw() {
-  image(video, 0, 0, WIDTH, HEIGHT);
+  // image(video, 0, 0, WIDTH, HEIGHT)
+  background(0);
   fill(255);
-  ellipse(middlePointHead, 144, 20, 20);
+  ellipse(middlePointHeadX, middlePointHeadY, 20, 20);
   flock.run();
 
-  if (middlePointHead > WIDTH / 2) {
+  if (middlePointHeadX > WIDTH / 2) {
     currectTimeFuture = selectModeColor;
     currectTimePast = unselectModeColor;
     pastText = unselectTextColor;
     futureText = selectTextColor; //render objects on future 
+    // flockSize = 1
+    // runFlock()
   } else {
     currectTimeFuture = unselectModeColor;
     currectTimePast = selectModeColor;
     pastText = selectTextColor;
     futureText = unselectTextColor; //render objects in the past 
+    // flockSize = 7
+    // runFlock()
   }
 
   fill(currectTimePast);

@@ -25,9 +25,9 @@ function Boid(x, y) {
   this.velocity = createVector(random(-1, 1), random(-1, 1));
   this.position = createVector(x, y);
   this.r = 3.0;
-  this.maxspeed = 3; // Maximum speed
+  this.maxspeed = 1.5; // Maximum speed
 
-  this.maxforce = 0.05; // Maximum steering force
+  this.maxforce = 0.1; // Maximum steering force
 }
 
 Boid.prototype.run = function (boids) {
@@ -74,6 +74,7 @@ Boid.prototype.update = function () {
 
 
 Boid.prototype.seek = function (target) {
+  // console.log(target)
   var desired = p5.Vector.sub(target, this.position); // A vector pointing from the location to the target
   // Normalize desired and scale to maximum speed
 
@@ -88,18 +89,18 @@ Boid.prototype.seek = function (target) {
 
 Boid.prototype.render = function () {
   // Draw a triangle rotated in the direction of velocity
-  var theta = this.velocity.heading() + radians(90);
-  fill(127);
-  stroke(200);
-  push();
-  translate(this.position.x, this.position.y);
-  rotate(theta);
-  beginShape();
-  vertex(0, -this.r * 2);
-  vertex(-this.r, this.r * 2);
-  vertex(this.r, this.r * 2);
-  endShape(CLOSE);
-  pop();
+  // let theta = this.velocity.heading() + radians(90);
+  image(flockIMG, this.position.x, this.position.y, this.r * 9, this.r * 9); // fill(127);
+  // stroke(200);
+  // push();
+  // translate(this.position.x, this.position.y);
+  // rotate(theta);
+  // beginShape();
+  // vertex(0, -this.r * 2);
+  // vertex(-this.r, this.r * 2);
+  // vertex(this.r, this.r * 2);
+  // endShape(CLOSE);
+  // pop();
 }; // Wraparound
 
 
@@ -196,6 +197,8 @@ Boid.prototype.cohesion = function (boids) {
 
   if (count > 0) {
     sum.div(count);
+    sum.x = middlePointHeadX;
+    sum.y = middlePointHeadY;
     return this.seek(sum); // Steer towards the location
   } else {
     return createVector(0, 0);
