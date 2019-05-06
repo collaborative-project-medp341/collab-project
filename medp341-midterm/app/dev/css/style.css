@@ -31,6 +31,15 @@ body {
   padding: 10px;
 }
 
+.flex-container .box-content {
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible;
+  text-align: justify;
+  padding: 10px;
+  width: 90%;
+}
+
 h1{
 	text-align: center;
 	font-family: 'Lilita One', cursive;
