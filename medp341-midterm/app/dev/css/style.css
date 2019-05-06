@@ -81,3 +81,20 @@ video {
   margin-top: 0px;
   font-size: 19.5px;
 }
+
+.nav{
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.nav li{
+    display:inline;
+    font-size: 20px;
+}
+.nav a{
+    display:inline-block;
+    padding:20px;
+    text-decoration:none;
+}
