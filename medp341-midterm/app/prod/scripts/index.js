@@ -28,6 +28,7 @@ var futureText; // flock settings
 var flockSize = 10; // images
 
 var animalIMG = "../images/lion.png";
+var backgroundIMG = "../images/reef.jpg";
 
 var pnCallback = function pnCallback() {
   console.log('pose net loaded');
@@ -68,40 +69,32 @@ var runFlock = function runFlock() {
 
 var setAnimationPicture = function setAnimationPicture() {
   var path = getURLPath();
-  console.log(path);
 
   if (path[0] === 'india.html') {
-    console.log('0');
     animalIMG = "../images/thar.png";
+    backgroundIMG = "../images/mountains.jpg";
   } else if (path[0] === 'australia.html') {
-    console.log('1');
     animalIMG = "../images/turtle.png";
+    backgroundIMG = "../images/reef.jpg";
   } else if (path[0] === 'congo.html') {
-    console.log('2');
     animalIMG = "../images/gorilla.png";
+    backgroundIMG = "../images/rainforest.jpg";
   } else if (path[0] === 'brazil.html') {
-    console.log('3');
     animalIMG = "../images/macaw.png";
-  } else {
-    console.log('4');
+    backgroundIMG = "../images/pantagal.jpg";
   }
 };
 
 function setup() {
-  createCanvas(WIDTH, HEIGHT);
   setAnimationPicture();
+  bg = loadImage(backgroundIMG);
+  createCanvas(WIDTH, HEIGHT);
   poseNetCapture(animalIMG);
   flockIMG = loadImage(animalIMG);
   runFlock();
 }
 
-function draw() {
-  // image(video, 0, 0, WIDTH, HEIGHT)
-  background(0);
-  fill(255);
-  ellipse(middlePointHeadX, middlePointHeadY, 20, 20);
-  flock.run();
-
+var pastFuture = function pastFuture() {
   if (middlePointHeadX > WIDTH / 2) {
     currectTimeFuture = selectModeColor;
     currectTimePast = unselectModeColor;
@@ -132,6 +125,14 @@ function draw() {
   textSize(20);
   textAlign(CENTER, CENTER);
   text("Future", WIDTH / 4 * 3, 10);
+};
+
+function draw() {
+  // image(video, 0, 0, WIDTH, HEIGHT)
+  background(bg);
+  fill(255);
+  ellipse(middlePointHeadX, middlePointHeadY, 20, 20);
+  flock.run(); //pastFuture()
 }
 
 $(function () {
