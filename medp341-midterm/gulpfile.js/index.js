@@ -13,7 +13,7 @@ exports.build = series(
 
 //gulp default 
 exports.default = series(
-    require(`./tasks/validateHTML`),
+    // require(`./tasks/validateHTML`),
     require('./tasks/css-compiler-dev'),
     require('./tasks/js-compiler-dev'),
     require(`./tasks/serve`)

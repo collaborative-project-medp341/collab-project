@@ -1,44 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Climate Change</title>
-
-   <script
-   src="https://code.jquery.com/jquery-3.4.0.min.js"
-   integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-   crossorigin="anonymous"></script>
-
-   <script src="/scripts/climateAPI.js"></script>
-
-
-   <link rel="stylesheet" href="/css/home.css">
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Homepage</title>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-   <div class="container" >
-      <h1>Climate Change</h1>
-      <a href="/congo.html">Go to a page</a>
-
-      <!-- <div class="">
-         <form name="apiForm" id="apiForm">
-            <select class="timeBtn" name="year">
-               <option value="past1">1920 - 1939</option>
-               <option value="past2">1940 - 1959</option>
-               <option value="past3">1960 - 1979</option>
-               <option value="past4">1980 - 1999</option>
-               <option value="future1">2020 - 2039</option>
-               <option value="future2">2040 - 2059</option>
-               <option value="future3">2060 - 2079</option>
-               <option value="future4">2080 - 2099</option>
-            </select>
-            <input type="button" value="Go" class="inputbtn" onClick="handleForm()">
-         </form>
-      </div> -->
-
-      
-   </div>
+	<h1 id="header">THE CLIMATE PHENOMENON</h1>
+	<h2>CLIMATE CHANGE - THE BASICS</h2>
+	<p>According to NASA, climate change is “a long-term change in the average weather patterns that have come to define Earth’s local, regional and global climates.” During and after the Industrial Revolution, there has been a surge of climate change drive by human activities. The main activity is the burning of fossil fuels, which in turn allows the “greenhouse effect” to occur. The “greenhouse effect” traps heat within the Earth’s atmosphere causing the global temperature increase. Due to this change a number of effects are taking place, such as ocean and land temperature increases, ice melting, and variability is extreme weather (think hurricanes, droughts, floods, wildfires). Take a look at the video below that discusses "Climate 101: Causes and Changes". </p>
+	<video src="video/climate-change.mp4" autobuffer autoloop loop controls width="600"></video>
+	<p id="credits"><i>Source: National Geographic</i></p>
+	<div class="flex-container">
+		<div class="box">
+			<h3>Global Temperature</h3>
+			<p>The Earth global temperature has risen about 1.63˚F (~0.9˚C). While this may not seem like a lot, this temperature continues to rise and would be detrimental to life as we know it. For example, according to a study published by the European Geoscience Union, a jump of 1.5˚C to 2.0˚C would allow heatwaves to last a third longer, coral reef survival to vanish, water deficit to double, and ecosystems to dismantle. <br> The video below is a time series from 1884 to 2018. It shows how the global surface temperature has been steadily increasing since the Industrial Revolution. </p>
+			<video src="video/global-temperature.mp4" width="500" autobuffer autoloop loop controls></video>
+			<p id="credits"><i>Data source: NASA/GISS <br> Credit: NASA Scientific Visualization Studio</i></p>
+		</div>
+		<div class="box">
+			<h3>Carbon Dioxide Levels</h3>
+			<p>Carbon dioxide is a greenhouse gas that takes a long time to leave the atmosphere. The IPCC Fifth Assessment Report states that 40% of the gas will remain in the atmosphere for 100 years, meaning that the CO2 that factories and cars release today are setting up the climate of our grandchildren. Moreover, CO2 levels are the highest they have been in centuries. Up until the 1950s, CO2 levels did not go over 300ppm, but today this number is ~410ppm. <br> The video below is a time series that shows the distribution of carbon dioxide from 2002 to 2016. As time progresses, you can see the red consume the whole map, which shows the overall increase of CO2.</p>
+			<video src="video/carbon-dioxide-levels.mp4" width="500" autobuffer autoloop loop controls></video>
+			<p id="credits"><i>Data source: Atmospheric Infrared Sounder (AIRS) <br>Credit: NASA</i></p>
+		</div>
+	</div>
+	
 </body>
 </html>
