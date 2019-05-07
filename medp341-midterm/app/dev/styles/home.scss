@@ -11,6 +11,7 @@
     font-size: 1em;
 }
 .label-temp {
+    color: #836236;
     margin: 0;
     font-family: 'Verdana';
     font-weight: bold;
@@ -46,4 +47,8 @@
 
 #time-period-info {
     font-size: small
+}
+
+.api-label {
+    text-decoration: none;
 }
