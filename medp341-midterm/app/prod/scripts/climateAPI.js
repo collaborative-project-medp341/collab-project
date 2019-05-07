@@ -58,11 +58,13 @@ var handleRequest = function handleRequest(timePeriod, iso) {
     for (month in data) {
       var tempF = data[month].annualData[0] * 9 / 5 + 32;
       tempF = roundNum(tempF, 2);
+
       sum += tempF; // $(`#temperature-data`).append(`<li>${tempF} &deg;F</li>`)
     }
 
     var tempAvg = roundNum(sum / data.length, 2);
     $("#time-period-avg").html("".concat(tempAvg));
+
   });
 };
 
@@ -71,6 +73,7 @@ var handleForm = function handleForm() {
   $("#time-period-info").empty();
   $("#time-period-avg").empty();
   $("#title-time-period").empty(); // $(`#temperature-data`).children().remove()
+
 
   var val = $("#apiForm")[0].children[0].value;
   var path = window.location.pathname;
