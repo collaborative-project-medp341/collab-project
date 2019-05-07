@@ -63,6 +63,12 @@ h3{
   color: #ffffff;
 }
 
+.image-icons {
+  margin-left: auto;
+  margin-right: auto;
+  display: block
+}
+
 video {
   margin-left: auto;
   margin-right: auto;
@@ -96,4 +102,8 @@ video {
     display:inline-block;
     padding:20px;
     text-decoration:none;
+}
+
+.explanation{
+  margin-top: 0px;
 }
