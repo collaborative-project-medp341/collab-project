@@ -47,23 +47,30 @@ var roundNum = function roundNum(num, pre) {
   return Math.ceil(num * pre) / pre;
 };
 
+var prevTmp = 0;
+
 var handleRequest = function handleRequest(timePeriod, iso) {
   var path = "".concat(api_url, "/").concat(timePeriod.start, "/").concat(timePeriod.end, "/").concat(iso);
   $("#title-time-period").html("Time Period from ".concat(timePeriod.start, " to ").concat(timePeriod.end)); //request 
 
   $.get(path, function (data) {
-    $("#time-period-info").html("Total Records: ".concat(data.length));
+    $("#time-period-info").html("# of records received: ".concat(data.length));
     var sum = 0;
 
     for (month in data) {
       var tempF = data[month].annualData[0] * 9 / 5 + 32;
       tempF = roundNum(tempF, 2);
       sum += tempF;
-      $("#temperature-data").append("<li>".concat(tempF, " &deg;F</li>"));
     }
 
     var tempAvg = roundNum(sum / data.length, 2);
-    $("#time-period-avg").html("Average: ".concat(tempAvg));
+    var circleWH = Math.floor(tempAvg);
+    $('#time-period-circle').css({
+      "width": "".concat(circleWH),
+      "height": "".concat(circleWH)
+    });
+    prevTmp = tempAvg;
+    $("#time-period-avg").html("".concat(tempAvg));
   });
 };
 
@@ -72,7 +79,6 @@ var handleForm = function handleForm() {
   $("#time-period-info").empty();
   $("#time-period-avg").empty();
   $("#title-time-period").empty();
-  $("#temperature-data").children().remove();
   var val = $("#apiForm")[0].children[0].value;
   var path = window.location.pathname;
   path = path.slice(1, -5);

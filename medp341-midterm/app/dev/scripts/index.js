@@ -1,3 +1,4 @@
+
 // canvas config
 const WIDTH = 720
 const HEIGHT = 480
@@ -59,7 +60,6 @@ const getCurrentPose = (poses) => {
 
     middlePointHeadX = ((LeftEyeX + RightEyeX) / 2)
     middlePointHeadY = ((LeftEyeY + RightEyeY) / 2)
-
   }
 }
 
@@ -108,13 +108,14 @@ const setAnimationPicture = () => {
 
 function setup(){
 
+  let myCanvas =  createCanvas(WIDTH, HEIGHT)
+  
+	myCanvas.parent(`p5-container`)
+
   setAnimationPicture()
 
   bg = loadImage(backgroundIMG)
-  createCanvas(WIDTH, HEIGHT)
-
-
-
+ 
   poseNetCapture(animalIMG)
 
   flockIMG = loadImage(animalIMG)
@@ -164,7 +165,6 @@ const pastFuture = () => {
 function draw(){
   // image(video, 0, 0, WIDTH, HEIGHT)
   background(bg)
-
   fill(255);
   ellipse(middlePointHeadX, middlePointHeadY, 20, 20);
   flock.run();

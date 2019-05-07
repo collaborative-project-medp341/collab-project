@@ -86,9 +86,10 @@ var setAnimationPicture = function setAnimationPicture() {
 };
 
 function setup() {
+  var myCanvas = createCanvas(WIDTH, HEIGHT);
+  myCanvas.parent("p5-container");
   setAnimationPicture();
   bg = loadImage(backgroundIMG);
-  createCanvas(WIDTH, HEIGHT);
   poseNetCapture(animalIMG);
   flockIMG = loadImage(animalIMG);
   runFlock();

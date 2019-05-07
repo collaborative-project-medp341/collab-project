@@ -26,7 +26,7 @@ function Flock() {
     this.position = createVector(x, y);
     this.r = 3.0;
     this.maxspeed = 1.5;    // Maximum speed
-    this.maxforce = 0.1; // Maximum steering force
+    this.maxforce = 0.08; // Maximum steering force
   }
   
   Boid.prototype.run = function(boids) {

@@ -1,6 +1,54 @@
-
 .container {
     background-color: rgba(0, 0, 0, 0.1);
     width: 90%;
     margin: auto;
+}
+.temp-section{
+    text-align: center;
+}
+.temperature-container{
+    font-family: 'Verdana';
+    font-size: 1em;
+}
+.label-temp {
+    color: #836236;
+    margin: 0;
+    font-family: 'Verdana';
+    font-weight: bold;
+}
+#time-period-circle {
+    margin:auto;
+    display: table;
+    transition: all 200ms ease-in;
+    background-color: red;
+    border-radius: 50%;
+    text-align: center;    
+}
+
+#time-period-avg {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inputBtn, .timeBtn {
+    margin-top: 20px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, 0.6);
+    text-shadow: 0px 1px 1px #000000;
+    color: black;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 1.3em;
+    text-decoration: none;
+}
+
+#title-time-period, #time-period-info {
+    margin: 5px;
+}
+
+#time-period-info {
+    font-size: small
+}
+
+.api-label {
+    text-decoration: none;
 }

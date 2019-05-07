@@ -1,4 +1,3 @@
-
 const api_url = 'http://climatedataapi.worldbank.org/climateweb/rest/v1/country/annualavg/tas'
 const timeData = {
     past1: {
@@ -46,23 +45,30 @@ const roundNum = (num, pre) => {
     return Math.ceil(num * pre) / pre
 }
 
+let prevTmp = 0 
+
+
 const handleRequest = (timePeriod, iso) => {
     let path = `${api_url}/${timePeriod.start}/${timePeriod.end}/${iso}`
     $(`#title-time-period`).html(`Time Period from ${timePeriod.start} to ${timePeriod.end}`)
 
-
     //request 
     $.get(path, (data) => {
-        $(`#time-period-info`).html(`Total Records: ${data.length}`)
+        $(`#time-period-info`).html(`# of records received: ${data.length}`)
         let sum = 0
         for ( month in data) {
             let tempF = (( (data[month].annualData[0] * 9) / 5) + 32)
             tempF = roundNum(tempF, 2)
             sum += tempF
-            $(`#temperature-data`).append(`<li>${tempF} &deg;F</li>`)
         }
         let tempAvg = roundNum(sum/data.length, 2)
-        $(`#time-period-avg`).html(`Average: ${tempAvg}`)
+        let circleWH = Math.floor(tempAvg)
+        $('#time-period-circle').css({
+            "width": `${circleWH}`,
+            "height": `${circleWH}`
+        })
+        prevTmp = tempAvg
+        $(`#time-period-avg`).html(`${tempAvg}`)
     })
 
    
@@ -73,7 +79,6 @@ const handleForm = () => {
     $(`#time-period-info`).empty()
     $(`#time-period-avg`).empty()
     $(`#title-time-period`).empty()
-    $(`#temperature-data`).children().remove()
 
     let val =  $(`#apiForm`)[0].children[0].value
     let path = window.location.pathname

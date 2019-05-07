@@ -33,10 +33,9 @@
    <script src="/scripts/flock.js"></script>
    <script src="/scripts/index.js"></script>
    <script src="/scripts/climateAPI.js"></script>
-
-
    
-   <link rel="stylesheet" href="/css/style.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="/css/home.css">
 
 </head>
 <body>
@@ -49,8 +48,34 @@
    <h2>DEMOCRATIC REPUBLIC OF CONGO</h2>
    <div class="flex-container">
       <div class="box-content">
-         <h3>temp animation goes here</h3>
-      </div>
+         <div class="temp-section">
+            <p class="label-temp">Average temperature in DR Congo</p>
+            <div><a class="api-label" href="https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api">Climate Change API</a></div>
+            <form name="apiForm" id="apiForm">
+               <select class="timeBtn" name="year">
+                  <option value="past1">1920 - 1939</option>
+                  <option value="past2">1940 - 1959</option>
+                  <option value="past3">1960 - 1979</option>
+                  <option value="past4">1980 - 1999</option>
+                  <option value="future1">2020 - 2039</option>
+                  <option value="future2">2040 - 2059</option>
+                  <option value="future3">2060 - 2079</option>
+                  <option value="future4">2080 - 2099</option>
+               </select>
+               <input type="button" value="Go" class="inputBtn" onClick="handleForm()">
+            </form>
+   
+         <div class="temperature-container">
+   
+               <h5 id="title-time-period"></h5>
+               <p id="time-period-info"></p>
+               <div id="time-period-circle" class="">
+                  <p id="time-period-avg" class=""></p>
+               </div>
+               <ul id="temperature-data">
+               </ul>
+            </div>
+         </div>      </div>
       <div class="box-content">
          <h3>Congo Basin</h3>
          <img src="../images/forest.png" class="image-icons" alt="congo basin forest" width="200">
@@ -64,37 +89,12 @@
          <p class="explanation">A large amount of Congolese livelihoods, like small-scale agriculture, forestry, fisheries, and mining, are linked to climate changes, which inevitable leads them to be threatened. An example provided by the US Agency of International Development, states that “changes in temperatures and rainfall may affect crop production and alter biodiversity and ecosystem resources.” This threats could possibly lead to even more widespread economic instability. </p>
       </div>
       <div class="box-content">
-         <h3>p5 thing goes here</h3>
+         <div id="p5-container"></div>
          <p class="explanation">While mountain gorillas have managed to adapt to changes in their environment, some of their traits still make them vulnerable to climate change. According to the World Wildlife Fund, “their population is very small and their range highly restricted. A limited dispersal ability (due to human settlements), coupled with a long generation time, a low reproductive rate, low amounts of genetic variation, [and susceptibility to disease], will limit the ability of the species to adapt to a changing climate.” </p>
       </div>
    </div>
    <audio src="../audio/basin.mp3" autobuffer autoloop loop controls autoplay></audio>
 
-
-      <div class="">
-         <form name="apiForm" id="apiForm">
-            <select class="timeBtn" name="year">
-               <option value="past1">1920 - 1939</option>
-               <option value="past2">1940 - 1959</option>
-               <option value="past3">1960 - 1979</option>
-               <option value="past4">1980 - 1999</option>
-               <option value="future1">2020 - 2039</option>
-               <option value="future2">2040 - 2059</option>
-               <option value="future3">2060 - 2079</option>
-               <option value="future4">2080 - 2099</option>
-            </select>
-            <input type="button" value="Go" class="inputbtn" onClick="handleForm()">
-         </form>
-      </div>
-
-      <div id="temperature-container">
-         <h4 id="title-time-period"></h4>
-         <p id="time-period-info"></p>
-         <p id="time-period-avg"></p>
-         <ul id="temperature-data">
-
-         </ul>
-      </div>
    </div>
 </body>
 </html>

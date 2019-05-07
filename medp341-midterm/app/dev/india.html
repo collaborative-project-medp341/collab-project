@@ -29,11 +29,12 @@
 
    <script src="https://unpkg.com/ml5@0.1.3/dist/ml5.min.js"></script>
 
-
    <script src="/scripts/flock.js"></script>
    <script src="/scripts/index.js"></script>
+   <script src="/scripts/climateAPI.js"></script>
    
-   <link rel="stylesheet" href="/css/style.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="/css/home.css">
 
 </head>
 <body>
@@ -46,7 +47,34 @@
    <h2>INDIA</h2>
    <div class="flex-container">
       <div class="box-content">
-         <h3>temp animation goes here</h3>
+         <div class="temp-section">
+            <p class="label-temp">Average temperature in India</p>
+            <div><a class="api-label" href="https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api">Climate Change API</a></div>
+            <form name="apiForm" id="apiForm">
+               <select class="timeBtn" name="year">
+                  <option value="past1">1920 - 1939</option>
+                  <option value="past2">1940 - 1959</option>
+                  <option value="past3">1960 - 1979</option>
+                  <option value="past4">1980 - 1999</option>
+                  <option value="future1">2020 - 2039</option>
+                  <option value="future2">2040 - 2059</option>
+                  <option value="future3">2060 - 2079</option>
+                  <option value="future4">2080 - 2099</option>
+               </select>
+               <input type="button" value="Go" class="inputBtn" onClick="handleForm()">
+            </form>
+   
+         <div class="temperature-container">
+   
+               <h5 id="title-time-period"></h5>
+               <p id="time-period-info"></p>
+               <div id="time-period-circle" class="">
+                  <p id="time-period-avg" class=""></p>
+               </div>
+               <ul id="temperature-data">
+               </ul>
+            </div>
+         </div>
       </div>
       <div class="box-content">
          <h3>Heatwave</h3>
@@ -62,7 +90,7 @@
          </p>
       </div>
       <div class="box-content">
-         <h3>p5 thing goes here</h3>
+         <div id="p5-container"></div>
          <p class="explanation">A new study conducted to model the futre of the Nilgiri thar in response to climate change has shown that around 60% of the tahr would be inhabitable. Moreover, before 1950, the tahr were widespread over the Western Ghats, since then only about 3000 that remain (which is about 10% of their former population).</p>
       </div>
    </div>
